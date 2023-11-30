@@ -4,6 +4,8 @@
 <div><p id="result"></p></div>
 <script type="text/javascript" src="pako.js"></script>
 <script type="text/javascript">
+
+
     function convert()
     {
         var b64Data = document.getElementById("txtarea").value;
@@ -24,6 +26,16 @@
         var strData     = String.fromCharCode.apply(null, new Uint16Array(data));
         console.log(strData);
         document.getElementById("result").innerText = strData;
+    }
+
+
+    let queryString = window.location.search;
+    if (queryString!=="")
+    {
+        queryString = queryString.slice(3);
+        console.log(queryString);
+        document.getElementById("txtarea").value = queryString;
+        convert();
     }
 
 </script>
