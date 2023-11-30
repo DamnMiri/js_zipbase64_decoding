@@ -1,7 +1,7 @@
 <textarea id="txtarea">
 </textarea>
 <button onclick="convert()">Converti</button>
-<div><h4 id="result"></h4></div>
+<div><p id="result"></p></div>
 <script type="text/javascript" src="pako.js"></script>
 <script type="text/javascript">
     function convert()
@@ -22,8 +22,8 @@
 
         // Convert gunzipped byteArray back to ascii string:
         var strData     = String.fromCharCode.apply(null, new Uint16Array(data));
-
-        document.getElementById("result").innerHTML = strData;
+        console.log(strData);
+        document.getElementById("result").innerText = strData;
     }
 
 </script>
