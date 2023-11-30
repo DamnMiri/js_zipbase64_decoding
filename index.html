@@ -1,0 +1,29 @@
+<textarea id="txtarea">
+</textarea>
+<button onclick="convert()">Converti</button>
+<div><h4 id="result"></h4></div>
+<script type="text/javascript" src="pako.js"></script>
+<script type="text/javascript">
+    function convert()
+    {
+        var b64Data = document.getElementById("txtarea").value;
+
+        // Decode base64 (convert ascii to binary)
+        var strData     = atob(b64Data);
+
+        // Convert binary string to character-number array
+        var charData    = strData.split('').map(function(x){return x.charCodeAt(0);});
+
+        // Turn number array into byte-array
+        var binData     = new Uint8Array(charData);
+
+        // Pako magic
+        var data        = pako.inflate(binData);
+
+        // Convert gunzipped byteArray back to ascii string:
+        var strData     = String.fromCharCode.apply(null, new Uint16Array(data));
+
+        document.getElementById("result").innerHTML = strData;
+    }
+
+</script>
